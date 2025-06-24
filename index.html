@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Increíble Página Web</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      /* 1. Importar la fuente Montserrat */
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+      /* Importar la fuente Playfair Display */
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
+
+      /* Estilos CSS para el menú sticky y los nuevos colores */
+      html {
+        scroll-behavior: smooth; /* ¡Esta es la propiedad mágica para el desplazamiento suave! */
+      }
+
+      /* --- Estilos Globales para el Body (Modificado para usar Montserrat) --- */
+      body {
+        margin: 0; /* Elimina el margen predeterminado del navegador para un control total */
+        font-family: "Montserrat", sans-serif; /* Aplicar Montserrat a todo el body */
+        background-color: #f8d8e0; /* Color de fondo base para toda la página (Rosa Pastel un poco más fuerte) */
+        color: #333;
+      }
+      /* --- Fin de Estilos Globales --- */
+
+      /* --- Selectores de ID --- */
+      #site-header {
+        padding: 20px; /* Relleno interno para dar espacio al contenido del encabezado */
+        background: linear-gradient(
+          135deg,
+          #f8d8e0,
+          #ffb6c1
+        ); /* Nuevo fondo con degradado */
+        text-align: center;
+      }
+
+      #main-footer {
+        text-align: center;
+        padding: 20px; /* Relleno interno para dar espacio al contenido del pie de página */
+        background-color: #333333;
+        color: white;
+        padding-top: 30px; /* Un poco más de relleno en la parte superior del footer */
+      }
+
+      /* --- Selectores de Etiqueta --- */
+      h1,
+      h2,
+      h3 {
+        color: #333;
+        /* No es necesario especificar font-family aquí si ya se hereda del body,
+                 a menos que quieras una variante específica (e.g., negrita) */
+      }
+
+      nav {
+        position: sticky;
+        top: 0;
+        background-color: #333333;
+        padding: 10px 0; /* Relleno vertical para la barra de navegación */
+        text-align: center;
+        z-index: 1000;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      nav ul li {
+        display: inline;
+        margin: 0 15px; /* Margen horizontal para separar los elementos del menú */
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 5px 0; /* Pequeño relleno vertical en los enlaces del menú */
+        transition: color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        color: #ffb6c1; /* Rosa más vibrante al pasar el ratón (más intenso que antes) */
+      }
+
+      main {
+        padding: 20px; /* Relleno general para el contenido principal, separándolo de los bordes del body */
+        min-height: 1200px;
+      }
+
+      section {
+        padding: 60px 20px; /* Padding clave para el "aire" dentro de los cuadros */
+        margin-bottom: 20px; /* Margen para separar cada sección de la siguiente */
+        background-color: #e6e6fa; /* Lila claro/Lavanda súper suave para las secciones */
+        border-bottom: 1px solid #f0c4d0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 1000px;
+        margin-left: auto; /* Margen para centrar y crear "aire" a los lados */
+        margin-right: auto; /* Margen para centrar y crear "aire" a los lados */
+        text-align: center; /* Centrar el contenido de la sección, incluido el botón */
+      }
+
+      section:nth-child(even) {
+        background-color: #f0f8ff;
+      }
+
+      #main-footer ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 15px; /* Margen para separar la lista de iconos del texto anterior */
+      }
+
+      #main-footer ul li {
+        display: inline;
+        margin: 0 10px; /* Margen horizontal para separar los iconos en el footer */
+      }
+
+      /* --- Selectores de Clase --- */
+      .main-title {
+        font-size: 2.5em;
+        margin-bottom: 5px;
+      }
+
+      .sub-heading {
+        font-size: 1.1em;
+        color: #555;
+      }
+
+      .section-content {
+        line-height: 1.6; /* Valor base */
+        color: #444;
+        margin-bottom: 1em;
+        margin-top: 1em;
+      }
+
+      /* Estilo específico para el texto dentro de la sección de inicio y sobre mí */
+      #inicio .section-content,
+      #sobre-mi .section-content {
+        font-family: "Playfair Display", serif; /* Aplicar Playfair Display */
+        font-weight: 400; /* Establecer el peso de la fuente a normal */
+        font-style: normal; /* Asegura que no esté inclinada */
+        line-height: 1.8; /* Aumentado para más espacio entre renglones */
+        letter-spacing: 0.03em; /* Aumentado para más espacio entre letras */
+      }
+
+      .footer-text {
+        font-size: 0.9em;
+        line-height: 1.5;
+        margin-bottom: 5px;
+      }
+
+      .social-icon {
+        color: white;
+        text-decoration: none;
+        font-size: 24px;
+        transition: color 0.3s ease;
+        display: inline-block;
+        padding: 5px;
+        margin: 0 5px;
+      }
+
+      .social-icon:hover {
+        color: #ffb6c1;
+      }
+
+      .contact-email-link {
+        color: #333;
+        text-decoration: none;
+        font-size: 1em;
+      }
+      .contact-email-link:hover {
+        text-decoration: underline;
+      }
+
+      /* --- Estilos del Botón --- */
+      .contact-button {
+        display: inline-block;
+        background-color: #ffb6c1;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1em;
+        cursor: pointer;
+        text-decoration: none;
+        margin-top: 30px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .contact-button:hover {
+        background-color: #f796a5;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* --- Estilos para la Galería con Flexbox --- */
+      .gallery-container {
+        display: flex; /* Habilita Flexbox */
+        flex-wrap: wrap; /* Permite que las tarjetas salten a la siguiente línea si no caben */
+        justify-content: center; /* Centra las tarjetas horizontalmente */
+        gap: 20px; /* Espacio entre las tarjetas */
+        padding: 20px; /* Relleno alrededor de todo el contenedor de la galería */
+        margin-top: 20px; /* Espacio entre el título de la galería y las imágenes */
+      }
+
+      .gallery-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .gallery-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .gallery-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .gallery-card-title {
+        font-size: 1.1em;
+        color: #333;
+        padding: 15px 10px 10px;
+        margin: 0;
+      }
+
+      .gallery-card-description {
+        font-size: 0.9em;
+        color: #666;
+        padding: 0 10px 15px;
+        margin: 0;
+      }
+
+      /* --- Media Queries para Responsividad --- */
+      @media (min-width: 768px) {
+        .gallery-card {
+          width: calc(
+            50% - 20px
+          ); /* Dos columnas en pantallas medianas (restamos el gap) */
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .gallery-card {
+          width: calc(33.333% - 20px); /* Tres columnas en pantallas grandes */
+        }
+      }
+
+      /* Estilos para el formulario de contacto */
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra los elementos del formulario */
+        gap: 15px; /* Espacio entre los campos */
+        max-width: 500px; /* Ancho máximo del formulario */
+        margin: 30px auto 0; /* Margen superior y centrado */
+        padding: 20px;
+        background-color: #fcfcfc; /* Un fondo ligeramente diferente para el formulario */
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        text-align: left; /* Alinea el texto de las etiquetas a la izquierda */
+      }
+
+      .form-group {
+        width: 100%; /* Ocupa el ancho completo del formulario */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Alinea etiquetas a la izquierda */
+      }
+
+      .form-group label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: calc(100% - 20px); /* Ancho completo menos padding */
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 1em;
+        box-sizing: border-box; /* Incluye padding y border en el ancho */
+      }
+
+      .form-group textarea {
+        resize: vertical; /* Permite redimensionar verticalmente */
+        min-height: 100px;
+      }
+
+      .form-submit-button {
+        /* Reutilizamos los estilos del contact-button */
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="site-header">
+      <h1 class="main-title">
+        Conecta con Mi Mundo: Portafolio y Blog de Avril
+      </h1>
+      <p class="sub-heading">Un lugar para comunicarnos y conocernos.</p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="inicio">
+        <h2>Inicio: Mi Espacio Digital</h2>
+        <p class="section-content">
+          ¡Hola! Soy Avril, y este es un espacio en el universo digital creado
+          por mí misma, y que quiero compartir contigo. Aquí comparto todo lo
+          que me apasiona y me define, desde mi fascinación por el K-Pop y todo
+          lo relacionado con Corea del Sur, hasta mi inmersión y pasión en la
+          programación y la ciberseguridad. ¡Que incluso es la carrera que estoy
+          estudiando con mucho gusto!
+        </p>
+        <p class="section-content">
+          Navega por la Galería para ver mis proyectos y las cosas que me
+          inspiran, descubre un poco más de mi historia en la sección Sobre mí,
+          y no dudes en Contactarme si tienes alguna pregunta, una idea para
+          colaborar, o simplemente quieres saludar.
+        </p>
+        <p class="section-content">
+          ¡Gracias por visitar! Espero que disfrutes explorando mi mundo.
+        </p>
+        <button id="btnBienvenida" class="contact-button">¡Salúdame!</button>
+      </section>
+
+      <section id="sobre-mi">
+        <h2>Sobre mí: Mi Historia y Habilidades</h2>
+        <p class="section-content">
+          Soy Avril, una persona con una mente siempre activa y curiosa, que
+          encuentra pasión en diversos campos. Desde pequeña, he desarrollado
+          una gran habilidad y amor por el ajedrez, un juego que me desafía y me
+          enseña a pensar estratégicamente. Mi lado creativo se expresa a través
+          del canto, una actividad que me relaja y me permite liberar emociones.
+          Cuando no estoy inmersa en la música o el ajedrez, es probable que me
+          encuentres practicando baloncesto o disfrutando de la libertad que me
+          da nadar.
+        </p>
+        <p class="section-content">
+          Mi sed de conocimiento me ha llevado a amar el estudio de idiomas y
+          las matemáticas, dos áreas que, aunque a veces desafiantes, me
+          fascinan profundamente. Actualmente, estoy totalmente inmersa en mi
+          carrera de programación y ciberseguridad. Reconozco que hay momentos
+          en los que el camino se vuelve cuesta arriba y la dificultad es real,
+          pero mi determinación es inquebrantable; rendirme no es una opción
+          para mí. Cada obstáculo lo veo como una oportunidad para aprender y
+          crecer, y mi motivación se fortalece con cada avance.
+        </p>
+        <p class="section-content">
+          Un área que particularmente capta mi atención y me llena de entusiasmo
+          es todo lo relacionado con la Inteligencia Artificial. Me parece
+          increíble cómo la tecnología avanza y crea nuevas posibilidades. Fuera
+          del mundo digital, soy una amante incondicional de los animales; amo a
+          todas las criaturas, pero siento una conexión especial con los
+          adorables pandas rojos y las majestuosas ballenas.
+        </p>
+        <p class="section-content">
+          Además, tengo una profunda admiración por Corea del Sur. Su cultura,
+          su música (especialmente el K-Pop), y sus programas de televisión me
+          cautivan por completo. Mi sueño más grande es algún día poder visitar
+          Corea del Sur y sumergirme en su vibrante ambiente, explorando cada
+          rincón de este fascinante país. Este portafolio es un reflejo de mis
+          pasiones y mi constante deseo de aprender y crecer.
+        </p>
+        <button id="btnDatoCurioso" class="contact-button">
+          Mostrar un dato curioso
+        </button>
+        <div id="contenedorDatosCuriosos"></div>
+      </section>
+
+      <section id="galeria">
+        <h2>Galería: Mis Pasiones en Imágenes</h2>
+        <p class="section-content">
+          Aquí te presento algunas imágenes que capturan mis intereses y
+          pasiones, desde mis hobbies hasta mis aspiraciones profesionales y
+          culturales.
+        </p>
+        <div class="gallery-container">
+          <div class="gallery-card">
+            <img
+              src="IMAGENES PAG WEB AVRILL/IMAGEN 1.jpg"
+              alt="K-Pop collage"
+            />
+            <h3 class="gallery-card-title">Mi Amor por el K-Pop</h3>
+            <p class="gallery-card-description">
+              Un collage que representa mi profunda conexión con el K-Pop y la
+              cultura musical surcoreana.
+            </p>
+          </div>
+          <div class="gallery-card">
+            <img
+              src="IMAGENES PAG WEB AVRILL/IMAGEN 2.jpg"
+              alt="Avril Lavigne album cover"
+            />
+            <h3 class="gallery-card-title">Inspiración Musical</h3>
+            <p class="gallery-card-description">
+              Una de las artistas que ha marcado mi gusto musical y me inspira
+              creativamente.
+            </p>
+          </div>
+          <div class="gallery-card">
+            <img
+              src="IMAGENES PAG WEB AVRILL/IMAGEN 3.jpg"
+              alt="Orca drawing"
+            />
+            <h3 class="gallery-card-title">Admiración por la Vida Marina</h3>
+            <p class="gallery-card-description">
+              Mi fascinación por las ballenas y la majestuosidad del océano.
+            </p>
+          </div>
+          <div class="gallery-card">
+            <img
+              src="IMAGENES PAG WEB AVRILL/IMAGEN 4.jpg"
+              alt="Swimming pool"
+            />
+            <h3 class="gallery-card-title">Mi Pasión por la Natación</h3>
+            <p class="gallery-card-description">
+              El lugar donde encuentro libertad y me desconecto del mundo.
+            </p>
+          </div>
+          <div class="gallery-card">
+            <img src="IMAGENES PAG WEB AVRILL/IMAGEN 5.jpg" alt="Sushi rolls" />
+            <h3 class="gallery-card-title">Delicias Culinarias Coreanas</h3>
+            <p class="gallery-card-description">
+              Una muestra de la gastronomía que adoro, ligada a mi interés por
+              Corea del Sur.
+            </p>
+          </div>
+          <div class="gallery-card">
+            <img
+              src="IMAGENES PAG WEB AVRILL/IMAGEN 6.jpg"
+              alt="Coding and Hacking books"
+            />
+            <h3 class="gallery-card-title">
+              Mi Mundo Digital: Programación y Ciberseguridad
+            </h3>
+            <p class="gallery-card-description">
+              Imágenes que reflejan mi inmersión en el estudio de la
+              programación, la ciberseguridad y la inteligencia artificial.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto">
+        <h2>Contacto: Hablemos de tu Próximo Proyecto</h2>
+        <p class="section-content">
+          ¿Listo para llevar tu idea a la web o tienes alguna pregunta? No dudes
+          en contactarme. Estoy disponible para discutir nuevas oportunidades y
+          colaboraciones.
+        </p>
+        <p class="section-content">Responderé a la brevedad posible.</p>
+        <h3>Formas de Contacto:</h3>
+        <ul>
+          <li>
+            <strong>Correo Electrónico:</strong>
+            <a href="mailto:stereog13@gmail.com" class="contact-email-link"
+              >stereog13@gmail.com</a
+            >
+          </li>
+          <li><strong>Instagram:</strong> @avril_burke.12.15</li>
+          <li><strong>TikTok:</strong> @avrils.in.korea_siksos</li>
+        </ul>
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required />
+          </div>
+
+          <div class="form-group">
+            <label for="mesNacimiento">Mes de Nacimiento:</label>
+            <input
+              type="text"
+              id="mesNacimiento"
+              name="mesNacimiento"
+              placeholder="Ej: Enero"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="diaNacimiento">Día de Nacimiento:</label>
+            <input
+              type="text"
+              id="diaNacimiento"
+              name="diaNacimiento"
+              placeholder="Ej: 15"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="animalFavorito">Animal Favorito:</label>
+            <input
+              type="text"
+              id="animalFavorito"
+              name="animalFavorito"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" required />
+          </div>
+
+          <button type="submit" class="contact-button form-submit-button">
+            Enviar Mensaje
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer id="main-footer">
+      <p class="footer-text">
+        &copy; 2025 Avril Aguilar González. Todos los derechos reservados.
+      </p>
+      <ul>
+        <li>
+          <a
+            href="https://www.instagram.com/avril_burke.12.15?igsh=eWw5amNybzFtNjA2&utm_source=qr"
+            target="_blank"
+            aria-label="Instagram"
+            class="social-icon"
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            href="https://www.tiktok.com/@avrils.in.korea_siksos?_t=ZS-8xSAbJTMX6Q&_r=1"
+            target="_blank"
+            aria-label="TikTok"
+            class="social-icon"
+            ><i class="fab fa-tiktok"></i
+          ></a>
+        </li>
+      </ul>
+      <p class="footer-text">Hecho con ❤️ desde la Ciudad de México.</p>
+    </footer>
+
+    <script>
+      // Script para el botón de bienvenida en la sección de Inicio
+      const btnBienvenida = document.getElementById("btnBienvenida");
+      btnBienvenida.addEventListener("click", function () {
+        alert(
+          "¡Hola! Soy Avril, gracias por entrar a conocerme, bienvenido/a a mi mundo. Espero que disfrutes explorando mi portafolio y blog."
+        );
+      });
+
+      // Script para el botón de dato curioso en la sección "Sobre mí"
+      const btnDatoCurioso = document.getElementById("btnDatoCurioso");
+      const contenedorDatosCuriosos = document.getElementById(
+        "contenedorDatosCuriosos"
+      );
+      let datoCuriosoMostrado = false;
+
+      btnDatoCurioso.addEventListener("click", function () {
+        if (!datoCuriosoMostrado) {
+          const nuevoParrafo = document.createElement("p");
+          nuevoParrafo.textContent =
+            "Ya que me gusta tanto la música y el estudiar idiomas, me resulta muy fácil y de muy buen apoyo aprender idiomas mientras escucho música en diversos idiomas. Actualmente sé hablar inglés, francés y coreano intermedio. Además, gané algunas competencias de ajedrez cuando estaba en secundaria, y también de oratoria a nivel nacional.";
+          nuevoParrafo.classList.add("section-content");
+          nuevoParrafo.style.color = "#666";
+          nuevoParrafo.style.fontWeight = "bold";
+
+          contenedorDatosCuriosos.appendChild(nuevoParrafo);
+          datoCuriosoMostrado = true;
+          btnDatoCurioso.disabled = true;
+          btnDatoCurioso.textContent = "Dato curioso mostrado";
+        }
+      });
+
+      // Script para la validación del formulario de contacto
+      const contactForm = document.getElementById("contactForm");
+
+      contactForm.addEventListener("submit", function (event) {
+        // Evitar que el formulario se envíe por defecto (y recargue la página)
+        event.preventDefault();
+
+        // Obtener los valores de los campos
+        const nombre = document.getElementById("nombre").value.trim();
+        const mesNacimiento = document
+          .getElementById("mesNacimiento")
+          .value.trim();
+        const diaNacimiento = document
+          .getElementById("diaNacimiento")
+          .value.trim();
+        const animalFavorito = document
+          .getElementById("animalFavorito")
+          .value.trim();
+        const correo = document.getElementById("correo").value.trim();
+
+        // Validar que los campos principales no estén vacíos
+        if (nombre === "") {
+          alert("Error: Por favor, ingresa tu nombre.");
+          return; // Detiene la función si hay un error
+        }
+        if (mesNacimiento === "") {
+          alert("Error: Por favor, ingresa tu mes de nacimiento.");
+          return;
+        }
+        if (diaNacimiento === "") {
+          alert("Error: Por favor, ingresa tu día de nacimiento.");
+          return;
+        }
+        if (animalFavorito === "") {
+          alert("Error: Por favor, ingresa tu animal favorito.");
+          return;
+        }
+        if (correo === "") {
+          alert("Error: Por favor, ingresa tu correo electrónico.");
+          return;
+        }
+
+        // Si todos los campos están llenos
+        alert("¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.");
+
+        // Opcional: Resetear el formulario después de un envío exitoso
+        contactForm.reset();
+      });
+    </script>
+  </body>
+</html>
